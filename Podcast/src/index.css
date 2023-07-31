@@ -134,106 +134,63 @@ h1 {
 
 /*===========================================================================================================================*/
 
-/*PreviewBar css*/
+/* Preview.css */
 
-.previewBar-container {
+.preview-container {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.season-buttons {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
-/* Styles for the slideshow container */
-.slideshow-container {
-  align-items: center;
-  width: 50vw;
-  position: relative;
-  overflow: hidden;
+button {
+  padding: 8px 12px;
+  border: none;
+  background-color: #f1f1f1;
+  cursor: pointer;
+  border-radius: 4px;
 }
 
-/* Styles for the preview show list (slides container) */
-.previewBar-show-list {
-  display: flex;
-  width: 20vw;
-  transition: transform 0.3s ease-in-out;
+button.active {
+  background-color: #007bff;
+  color: #fff;
 }
 
-/* Styles for each individual slide */
-.show-item {
-  min-width: 100%;
-  margin: 5%;
-  flex-shrink: 1;
-  list-style: none;
+.episodes-list {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 4px;
 }
 
-/* Styles for the active slide */
-/* .show-item.active {
-  border: 1px solid rgb(208, 31, 138); /* Add your desired active slide border color here */
+h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
 
-
-.previewBar-list {
+ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-/* Show link style */
-.previewBar-link {
-  text-decoration: none;
-  color: #333;
-}
-
-/* Show info container style */
-.previewBar-info {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease;
-}
-
-/* Show image style */
-.previewBar-image {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-right: 20px;
-}
-
-/* Show title style */
-.previewBar-title {
-  font-size: 20px;
+li {
   margin-bottom: 5px;
 }
 
-/* Show info hover effect */
-.previewBar-info:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Styles for the navigation buttons */
-.prev-btn,
-.next-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: #007bff; /* Add your desired button background color here */
-  color: #fff; /* Add your desired button text color here */
+button {
+  padding: 6px 10px;
+  background-color: #007bff;
+  color: #fff;
   border: none;
-  margin: 2%;
-  padding: 10px 15px;
+  border-radius: 4px;
   cursor: pointer;
-  z-index: 1;
-}
-
-.prev-btn {
-  left: 0;
-}
-
-.next-btn {
-  right: 0;
 }
