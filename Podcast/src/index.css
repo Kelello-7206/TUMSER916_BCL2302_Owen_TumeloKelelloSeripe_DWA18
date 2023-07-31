@@ -1,69 +1,66 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+/* CSS for Navbar */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #333;
+    padding: 10px;
+    color: #fff;
   }
-  a:hover {
-    color: #747bff;
+  
+  .menu-button {
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
   }
-  button {
-    background-color: #f9f9f9;
+  
+  .menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    top: 40px;
+    left: 10px;
+    background-color: #444;
+    border: 1px solid #555;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    pointer-events: none;
   }
-}
+  
+  .menu li {
+    padding: 10px;
+    border-bottom: 1px solid #555;
+  }
+  
+  .menu li:last-child {
+    border-bottom: none;
+  }
+  
+  .menu li a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .right-buttons {
+    display: flex;
+  }
+  
+  .right-buttons button {
+    background-color: #555;
+    border: none;
+    color: #fff;
+    padding: 10px 15px;
+    margin-left: 5px;
+    cursor: pointer;
+  }
+  
+  /* Show the dropdown menu when 'showMenu' is true */
+  .navbar.show .menu {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
