@@ -16,6 +16,9 @@ export default function Home({ shows, loading }) {
                   <div className="show-details">
                     <h3 className="show-title">{show.title}</h3>
                     <p className="show-description">{show.description}</p>
+                    <p className="show-genre">{show.genre}</p>
+                    <p className="show-seasons">Numbers of seasons:{show.seasons}</p>
+                    <p className="show-updated">Updated: {show.updated}</p>
                   </div>
                 </div>
               </a>

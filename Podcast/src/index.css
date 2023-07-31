@@ -134,3 +134,96 @@ h1 {
 
 /*===========================================================================================================================*/
 
+/* Your existing styles for other elements */
+
+/* Styles for the slideshow container */
+.slideshow-container {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Styles for the preview show list (slides container) */
+.preview-show-list {
+  display: flex;
+  width: 500px;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Styles for each individual slide */
+.show-item {
+  min-width: 100%;
+  flex-shrink: 0;
+  list-style: none;
+}
+
+/* Styles for the active slide */
+.show-item.active {
+  border: 1px solid wheat; /* Add your desired active slide border color here */
+}
+
+.preview-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Show link style */
+.preview-link {
+  text-decoration: none;
+  color: #333;
+}
+
+/* Show info container style */
+.preview-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+/* Show image style */
+.preview-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 20px;
+}
+
+/* Show title style */
+.preview-title {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+/* Show info hover effect */
+.preview-info:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles for the navigation buttons */
+.prev-btn,
+.next-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #007bff; /* Add your desired button background color here */
+  color: #fff; /* Add your desired button text color here */
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.prev-btn {
+  left: 0;
+}
+
+.next-btn {
+  right: 0;
+}

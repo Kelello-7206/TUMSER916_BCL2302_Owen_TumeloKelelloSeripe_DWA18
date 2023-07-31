@@ -2,11 +2,12 @@ import React, { useEffect } from "react"
 import './index.css'
 import Navbar from './components/Navbar'
 import Home from './components/Home'
+import Preview from "./components/PreviewBar"
 
 
 function App() {
 
-  const [shows, setShows] = React.useState([]);
+  const [showPodcast, setPodcast] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
 
   useEffect(() => {
@@ -14,7 +15,7 @@ function App() {
     fetch('https://podcast-api.netlify.app/shows')
       .then((response) => response.json())
       .then((data) => {
-        setShows(data);
+        setPodcast(data);
         setLoading(false);
       })
       .catch((error) => {
@@ -26,7 +27,9 @@ function App() {
   return (
     <>
       <Navbar />
-      <Home shows={shows} loading={loading} />
+      <Preview shows={showPodcast} loading={loading} />
+
+      <Home shows={showPodcast} loading={loading} />
     </>
   )
 }
