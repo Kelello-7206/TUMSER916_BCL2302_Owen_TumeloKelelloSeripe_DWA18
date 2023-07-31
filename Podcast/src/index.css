@@ -133,9 +133,10 @@ h1 {
 }
 
 /*===========================================================================================================================*/
+
 /*PreviewBar css*/
 
-.preview-container {
+.previewBar-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -143,13 +144,14 @@ h1 {
 
 /* Styles for the slideshow container */
 .slideshow-container {
+  align-items: center;
   width: 50vw;
   position: relative;
   overflow: hidden;
 }
 
 /* Styles for the preview show list (slides container) */
-.preview-show-list {
+.previewBar-show-list {
   display: flex;
   width: 20vw;
   transition: transform 0.3s ease-in-out;
@@ -164,24 +166,24 @@ h1 {
 }
 
 /* Styles for the active slide */
-.show-item.active {
+/* .show-item.active {
   border: 1px solid rgb(208, 31, 138); /* Add your desired active slide border color here */
-}
 
-.preview-list {
+
+.previewBar-list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
 /* Show link style */
-.preview-link {
+.previewBar-link {
   text-decoration: none;
   color: #333;
 }
 
 /* Show info container style */
-.preview-info {
+.previewBar-info {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
@@ -193,7 +195,7 @@ h1 {
 }
 
 /* Show image style */
-.preview-image {
+.previewBar-image {
   width: 100px;
   height: 100px;
   object-fit: cover;
@@ -202,13 +204,13 @@ h1 {
 }
 
 /* Show title style */
-.preview-title {
+.previewBar-title {
   font-size: 20px;
   margin-bottom: 5px;
 }
 
 /* Show info hover effect */
-.preview-info:hover {
+.previewBar-info:hover {
   transform: translateY(-5px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -222,6 +224,7 @@ h1 {
   background-color: #007bff; /* Add your desired button background color here */
   color: #fff; /* Add your desired button text color here */
   border: none;
+  margin: 2%;
   padding: 10px 15px;
   cursor: pointer;
   z-index: 1;
