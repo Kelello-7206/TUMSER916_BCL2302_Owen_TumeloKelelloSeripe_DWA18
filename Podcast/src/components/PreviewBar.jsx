@@ -14,34 +14,37 @@ export default function PreviewBar({ shows, loading }) {
   return (
     <div className="preview-container">
       {loading ? (<p>Loading...</p>) : (
+        
         <div className="slideshow-container">
-          <button className="prev-btn" onClick={prevSlide}>Prev</button>
 
-          <ul className="preview-show-list" style={{ transform: `translateX(-${showPreview * 100}%)` }}>
-            {shows.map((show, index) => {
-              const isVisible = index === showPreview || index === (showPreview + 1) % shows.length;
-              return (
-                <li
-                  key={show.id}
-                  className={`show-item ${isVisible ? "active" : ""}`}
-                  style={{ display: isVisible ? 'block' : 'none' }}
-                >
-                  <a href={`/show/${show.id}`} className="preview-link">
-                    <div className="preview-info">
-                      <img src={show.image} alt={show.title} className="preview-image" />
-                      <div className="preview-details">
-                        <h3 className="preview-title">{show.title}</h3>
-                      </div>
+          <button className="prev-btn" onClick={prevSlide}>Prev</button>
+          <button className="next-btn" onClick={nextSlide}>Next</button>
+
+          <ul className="preview-show-list"
+            style={{ transform: `translateX(-${showPreview * 100}%)` }}
+          >
+
+            {shows.map((show, item) => (
+              <li
+                key={show.id}
+                className={`show-item ${item === showPreview ? "active" : ""}`}
+              >
+                <a href={`/show/${show.id}`} className="preview-link">
+                  <div className="preview-info">
+                    <img src={show.image} alt={show.title} className="preview-image" />
+                    <div className="preview-details">
+                      <h3 className="preview-title">{show.title}</h3>
+                      
                     </div>
-                  </a>
-                </li>
-              );
-            })}
+                  </div>
+                </a>
+              </li>
+            ))}
           </ul>
 
-          <button className="next-btn" onClick={nextSlide}>Next</button>
-        </div>
+        </div>  
       )}
+         
     </div>
   );
 }

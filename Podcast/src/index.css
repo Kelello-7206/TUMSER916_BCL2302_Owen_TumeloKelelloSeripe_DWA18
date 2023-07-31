@@ -133,11 +133,17 @@ h1 {
 }
 
 /*===========================================================================================================================*/
+/*PreviewBar css*/
 
-/* Your existing styles for other elements */
+.preview-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 /* Styles for the slideshow container */
 .slideshow-container {
+  width: 50vw;
   position: relative;
   overflow: hidden;
 }
@@ -145,7 +151,7 @@ h1 {
 /* Styles for the preview show list (slides container) */
 .preview-show-list {
   display: flex;
-  width: 500px;
+  width: 20vw;
   transition: transform 0.3s ease-in-out;
 }
 
@@ -153,7 +159,7 @@ h1 {
 .show-item {
   min-width: 100%;
   margin: 5%;
-  flex-shrink: 0;
+  flex-shrink: 1;
   list-style: none;
 }
 
