@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useEffect } from "react"
 import './index.css'
 import Navbar from './components/Navbar'
 import Home from './components/Home'
 
 
 function App() {
+
+  const [shows, setShows] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
 
   useEffect(() => {
     // Fetch all show data from the API
