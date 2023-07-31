@@ -2,7 +2,7 @@ import React, { useEffect } from "react"
 import './index.css'
 import Navbar from './components/Navbar'
 import Home from './components/Home'
-import Preview from "./components/PreviewBar"
+import PreviewBar from "./components/PreviewBar"
 
 
 function App() {
@@ -27,7 +27,7 @@ function App() {
   return (
     <>
       <Navbar />
-      <Preview shows={showPodcast} loading={loading} />
+      <PreviewBar shows={showPodcast} loading={loading} />
 
       <Home shows={showPodcast} loading={loading} />
     </>

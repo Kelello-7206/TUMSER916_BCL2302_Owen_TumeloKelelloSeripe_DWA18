@@ -1,14 +1,14 @@
 import React from "react";
 
-export default function Preview({ shows, loading }) {
+export default function PreviewBar({ shows, loading }) {
   const [showPreview, setPreview] = React.useState(0);
 
   const nextSlide = () => {
-    setPreview((prevPreview) => (prevPreview + 1) % shows.length);
+    setPreview((prevPreview) => (prevPreview + 2) % shows.length);
   };
 
   const prevSlide = () => {
-    setPreview((prevPreview) => ((prevPreview - 1) + shows.length) % shows.length);
+    setPreview((prevPreview) => ((prevPreview - 2) + shows.length) % shows.length);
   };
 
   return (

@@ -152,13 +152,14 @@ h1 {
 /* Styles for each individual slide */
 .show-item {
   min-width: 100%;
+  margin: 5%;
   flex-shrink: 0;
   list-style: none;
 }
 
 /* Styles for the active slide */
 .show-item.active {
-  border: 1px solid wheat; /* Add your desired active slide border color here */
+  border: 1px solid rgb(208, 31, 138); /* Add your desired active slide border color here */
 }
 
 .preview-list {
