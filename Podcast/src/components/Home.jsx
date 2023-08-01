@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import '../index.css'
 import Preview from './Preview' // Import the Preview component
 
 export default function Home() {
@@ -54,7 +55,7 @@ export default function Home() {
         <ul className="show-list">
           {showPodcast.map((show) => (
             <li key={show.id}>
-              <a href={`/show/${show.id}`} className="show-link"  onClick={(event) => handlePodcastClick(event,show)}>
+              <a href={`/show/${show.id}`} className="show-link"  onClick={(event) => handlePodcastClick(event, podcast)}>
                 <div className="show-info">
                   <img src={show.image} className="show-image" alt={show.title} />
                   <div className="show-details">
