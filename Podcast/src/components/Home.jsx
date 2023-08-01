@@ -1,15 +1,16 @@
 import React, { useEffect } from "react";
+import axios from "axios"; // Import Axios
+
 
 export default function Home() {
   const [showPodcast, setPodcast] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
 
   useEffect(() => {
-    // Fetch all show data from the API
-    fetch('https://podcast-api.netlify.app/shows')
-      .then((response) => response.json())
-      .then((data) => {
-        setPodcast(data);
+    // Fetch all show data from the API using Axios
+    axios.get('https://podcast-api.netlify.app/shows')
+      .then((response) => {
+        setPodcast(response.data); // Use response.data instead of calling response.json()
         setLoading(false);
       })
       .catch((error) => {
@@ -47,18 +48,8 @@ export default function Home() {
         <ul className="show-list">
           {showPodcast.map((show) => (
             <li key={show.id}>
-              <a href={`/show/${show.id}`} className="show-link">
-                <div className="show-info">
-                  <img src={show.image} className="show-image" alt={show.title} />
-                  <div className="show-details">
-                    <h3 className="show-title">{show.title}</h3>
-                    <p className="show-description">{show.description}</p>
-                    <p>Genre: {getGenres(show.genres)}</p>
-                    <p className="show-seasons">Numbers of seasons: {show.seasons}</p>
-                    <p className="show-updated">Updated: {show.updated}</p>
-                  </div>
-                </div>
-              </a>
+              {/* Pass the show.id to the Preview component */}
+              <Preview showId={show.id} />
             </li>
           ))}
         </ul>
@@ -66,3 +57,10 @@ export default function Home() {
     </div>
   );
 }
+
+
+
+
+
+
+
