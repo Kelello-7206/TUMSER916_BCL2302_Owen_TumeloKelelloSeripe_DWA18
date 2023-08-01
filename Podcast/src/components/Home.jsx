@@ -1,12 +1,13 @@
-import React, { useEffect } from "react";
-import axios from "axios";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import Preview from './Preview' // Import the Preview component
 
 export default function Home() {
-  const [showPodcast, setPodcast] = React.useState([]);
-  const [loading, setLoading] = React.useState(true);
+  const [showPodcast, setPodcast] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [selectedPodcast, setSelectedPodcast] = useState(null); // Track the selected podcast
 
   useEffect(() => {
-   
     axios
       .get('https://podcast-api.netlify.app/shows')
       .then((response) => {
@@ -39,6 +40,11 @@ export default function Home() {
     }
   };
 
+  const handlePodcastClick = (event , podcast) => {
+    event.preventDefault();
+    setSelectedPodcast(podcast); // Set the selected podcast when it's clicked
+  };
+
   return (
     <div className="home-container">
       <h1>All Shows</h1>
@@ -48,7 +54,7 @@ export default function Home() {
         <ul className="show-list">
           {showPodcast.map((show) => (
             <li key={show.id}>
-              <a href={`/show/${show.id}`} className="show-link">
+              <a href={`/show/${show.id}`} className="show-link"  onClick={(event) => handlePodcastClick(event,show)}>
                 <div className="show-info">
                   <img src={show.image} className="show-image" alt={show.title} />
                   <div className="show-details">
@@ -64,6 +70,8 @@ export default function Home() {
           ))}
         </ul>
       )}
+
+   {selectedPodcast && <Preview podcastId={selectedPodcast.id} />}
     </div>
   );
 }
@@ -74,25 +82,24 @@ export default function Home() {
 
 
 
-
-{
-  "id": 
-  "title": 
-  "description": 
-  "seasons": [
-    {
-      "season":
-      "title": 
-      "image": 
-      "episodes": [
-        {
-          "title": 
-          "description": 
-          "episode":
-          "file":
-        },
-      }
-    }
+// {
+//   "id": 
+//   "title": 
+//   "description": 
+//   "seasons": [
+//     {
+//       "season":
+//       "title": 
+//       "image": 
+//       "episodes": [
+//         {
+//           "title": 
+//           "description": 
+//           "episode":
+//           "file":
+//         },
+//       }
+//     }
 
 
 
