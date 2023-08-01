@@ -66,35 +66,35 @@
   
 /* ===========================================================================================================================*/
 
-/* Home.css
+/*Home.css*/
 
-/* Main container for the Home component 
+/* Main container for the Home component */
 .home-container {
   text-align: center;
   padding: 20px;
 }
 
-/* Header style 
+/* Header style */
 h1 {
   font-size: 28px;
   margin-bottom: 20px;
   color: #333;
 }
 
-/* Show list style 
+/* Show list style */
 .show-list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-/* Show link style 
+/* Show link style */
 .show-link {
   text-decoration: none;
   color: #333;
 }
 
-/* Show info container style 
+/* Show info container style */
 .show-info {
   display: flex;
   align-items: center;
@@ -106,7 +106,7 @@ h1 {
   transition: transform 0.2s ease;
 }
 
-/* Show image style
+/* Show image style */
 .show-image {
   width: 100px;
   height: 100px;
@@ -115,21 +115,21 @@ h1 {
   margin-right: 20px;
 }
 
-/* Show title style 
+/* Show title style */
 .show-title {
   font-size: 20px;
   margin-bottom: 5px;
 }
 
-/* Show description style 
+/* Show description style */
 .show-description {
   font-size: 16px;
 }
 
-/* Show info hover effect 
+/* Show info hover effect */
 .show-info:hover {
   transform: translateY(-5px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-} */
+}
 
 /*=========================================================================================================================== */

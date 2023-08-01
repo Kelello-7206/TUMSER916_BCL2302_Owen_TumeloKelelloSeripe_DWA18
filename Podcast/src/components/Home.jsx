@@ -67,3 +67,34 @@ export default function Home() {
     </div>
   );
 }
+
+
+
+
+
+
+
+
+{
+  "id": 
+  "title": 
+  "description": 
+  "seasons": [
+    {
+      "season":
+      "title": 
+      "image": 
+      "episodes": [
+        {
+          "title": 
+          "description": 
+          "episode":
+          "file":
+        },
+      }
+    }
+
+
+
+
+
