@@ -68,6 +68,8 @@
 //   );
 // }
 
+
+
 import React, { useEffect } from "react";
 import axios from "axios";
 
@@ -91,27 +93,32 @@ export default function Home() {
       });
   }, []);
 
- //   const genreData = {
-//     1: 'Personal Growth',
-//     2: 'True Crime and Investigative Journalism',
-//     3: 'History',
-//     4: 'Comedy',
-//     5: 'Entertainment',
-//     6: 'Business',
-//     7: 'Fiction',
-//     8: 'News',
-//     9: 'Kids and Family',
-//   };
+  const genreData = {
+    1: "Personal Growth",
+    2: "True Crime and Investigative Journalism",
+    3: "History",
+    4: "Comedy",
+    5: "Entertainment",
+    6: "Business",
+    7: "Fiction",
+    8: "News",
+    9: "Kids and Family",
+  };
 
-//   const getGenres = (genreIds) => {
-//     if (Array.isArray(genreIds)) {
-//       return genreIds.map((id) => genreData[id]).join(', ');
-//     } else {
-//       return genreData[genreIds];
-//     }
-//   };
+  const getGenres = (genreIds) => {
+    if (Array.isArray(genreIds)) {
+      return genreIds.map((id) => genreData[id]).join(", ");
+    } else {
+      return genreData[genreIds];
+    }
+  };
 
   const handleShowClick = (showId) => {
+    // Check if the show is already selected to avoid unnecessary API calls
+    if (selectedShow && selectedShow.id === showId) {
+      return;
+    }
+
     const selectedShowData = showPodcast.find((show) => show.id === showId);
     setSelectedShow(selectedShowData);
 
@@ -123,6 +130,7 @@ export default function Home() {
       })
       .catch((error) => {
         console.error("Error fetching seasons and episodes:", error);
+        setSeasonsAndEpisodes([]); // Reset seasons and episodes on error
       });
   };
 
@@ -137,7 +145,9 @@ export default function Home() {
             {showPodcast.map((show) => (
               <li key={show.id}>
                 <button onClick={() => handleShowClick(show.id)} className="show-link">
-                  {/* ... (unchanged) */}
+                  {show.title}
+                  <br />
+                  {getGenres(show.genres)}
                 </button>
               </li>
             ))}
@@ -146,7 +156,7 @@ export default function Home() {
             <div className="preview-container">
               <h2>{selectedShow.title}</h2>
               {/* ... (unchanged) */}
-              {seasonsAndEpisodes.length > 0 && (
+              {seasonsAndEpisodes.length > 0 ? (
                 <div>
                   <h3>Seasons and Episodes</h3>
                   <ul>
@@ -166,6 +176,8 @@ export default function Home() {
                     ))}
                   </ul>
                 </div>
+              ) : (
+                <p>No seasons and episodes found for this show.</p>
               )}
             </div>
           )}
