@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import '../index.css'
-import Preview from './Preview' // Import the Preview component
+import '../index.css';
+import Preview from './Preview';
 
 export default function Home() {
   const [showPodcast, setPodcast] = useState([]);
@@ -41,8 +41,7 @@ export default function Home() {
     }
   };
 
-  const handlePodcastClick = (event, podcast) => {
-    event.preventDefault();
+  const handlePodcastClick = (podcast) => {
     // Toggle the selected podcast, i.e., if it's already selected, set it to null, otherwise set it to the clicked podcast
     setSelectedPodcast((prevSelectedPodcast) =>
       prevSelectedPodcast === podcast ? null : podcast
@@ -56,10 +55,9 @@ export default function Home() {
         <p>Loading...</p>
       ) : (
         <>
-        <ul className="show-list">
-          {showPodcast.map((show) => (
-            <li key={show.id}>
-              <a href={`/show/${show.id}`} className="show-link"  onClick={(event) => handlePodcastClick(event, show)}>
+          <ul className="show-list">
+            {showPodcast.map((show) => (
+              <li key={show.id} onClick={() => handlePodcastClick(show)}>
                 <div className="show-info">
                   <img src={show.image} className="show-image" alt={show.title} />
                   <div className="show-details">
@@ -70,43 +68,12 @@ export default function Home() {
                     <p className="show-updated">Updated: {show.updated}</p>
                   </div>
                 </div>
-              </a>
-            </li>
-          ))}
-        </ul>
-        {selectedPodcast && <Preview podcastId={selectedPodcast.id} />}
+              </li>
+            ))}
+          </ul>
+          {selectedPodcast && <Preview podcastId={selectedPodcast.id} />}
         </>
       )}
     </div>
   );
 }
-
-
-
-
-
-
-
-// {
-//   "id": 
-//   "title": 
-//   "description": 
-//   "seasons": [
-//     {
-//       "season":
-//       "title": 
-//       "image": 
-//       "episodes": [
-//         {
-//           "title": 
-//           "description": 
-//           "episode":
-//           "file":
-//         },
-//       }
-//     }
-
-
-
-
-
