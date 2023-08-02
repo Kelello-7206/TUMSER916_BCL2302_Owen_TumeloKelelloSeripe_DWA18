@@ -41,9 +41,12 @@ export default function Home() {
     }
   };
 
-  const handlePodcastClick = (event , podcast) => {
+  const handlePodcastClick = (event, podcast) => {
     event.preventDefault();
-    setSelectedPodcast(podcast); // Set the selected podcast when it's clicked
+    // Toggle the selected podcast, i.e., if it's already selected, set it to null, otherwise set it to the clicked podcast
+    setSelectedPodcast((prevSelectedPodcast) =>
+      prevSelectedPodcast === podcast ? null : podcast
+    );
   };
 
   return (
@@ -52,10 +55,11 @@ export default function Home() {
       {loading ? (
         <p>Loading...</p>
       ) : (
+        <>
         <ul className="show-list">
           {showPodcast.map((show) => (
             <li key={show.id}>
-              <a href={`/show/${show.id}`} className="show-link"  onClick={(event) => handlePodcastClick(event, podcast)}>
+              <a href={`/show/${show.id}`} className="show-link"  onClick={(event) => handlePodcastClick(event, show)}>
                 <div className="show-info">
                   <img src={show.image} className="show-image" alt={show.title} />
                   <div className="show-details">
@@ -70,9 +74,9 @@ export default function Home() {
             </li>
           ))}
         </ul>
+        {selectedPodcast && <Preview podcastId={selectedPodcast.id} />}
+        </>
       )}
-
-   {selectedPodcast && <Preview podcastId={selectedPodcast.id} />}
     </div>
   );
 }
