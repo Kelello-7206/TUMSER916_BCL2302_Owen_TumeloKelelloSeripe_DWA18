@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Preview from './Preview';
 
-
-export default function Home() {
+const Home = ({ onPodcastClick }) => {
   const [showPodcast, setPodcast] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [selectedPodcast, setSelectedPodcast] = useState(null);
 
   useEffect(() => {
     axios
@@ -20,7 +17,6 @@ export default function Home() {
         setLoading(false);
       });
   }, []);
-
 
   const genreData = {
     1: 'Personal Growth',
@@ -43,10 +39,7 @@ export default function Home() {
   };
 
   const handlePodcastClick = (podcast) => {
-    // Toggle the selected podcast, i.e., if it's already selected, set it to null, otherwise set it to the clicked podcast
-    setSelectedPodcast((prevSelectedPodcast) =>
-      prevSelectedPodcast === podcast ? null : podcast
-    );
+    onPodcastClick(podcast); // Call the onPodcastClick function to set the selected podcast in the parent component
   };
 
   return (
@@ -72,11 +65,10 @@ export default function Home() {
               </li>
             ))}
           </ul>
-          {selectedPodcast && <Preview podcastId={selectedPodcast.id} />}
         </>
       )}
     </div>
   );
 };
 
-
+export default Home;

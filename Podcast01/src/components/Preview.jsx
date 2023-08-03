@@ -6,21 +6,34 @@ const Preview = ({ podcastId }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios
-      .get(`https://podcast-api.netlify.app/id/${podcastId}`)
-      .then((response) => {
-        setPodcast(response.data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error('Error fetching podcast data:', error);
-        setLoading(false);
-      });
+    if (podcastId) {
+      axios
+        .get(`https://podcast-api.netlify.app/id/${podcastId}`)
+        .then((response) => {
+          setPodcast(response.data);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error('Error fetching podcast data:', error);
+          setLoading(false);
+        });
+    }
   }, [podcastId]);
 
   if (loading) {
     return <p>Loading...</p>;
   }
+
+  if (!podcast) {
+    return <p>No data found for this podcast.</p>;
+  }
+
+  const handlePodcastClick = (podcast) => {
+    // Toggle the selected podcast, i.e., if it's already selected, set it to null, otherwise set it to the clicked podcast
+    setSelectedPodcast((prevSelectedPodcast) =>
+      prevSelectedPodcast === podcast ? null : podcast
+    );
+  };
 
   return (
     <div className="preview-container">
