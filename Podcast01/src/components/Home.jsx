@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const Home = ({ onPodcastClick }) => {
+const Home = ({ onPodcastClick, selectedPodcast }) => {
   const [showPodcast, setPodcast] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -42,7 +42,7 @@ const Home = ({ onPodcastClick }) => {
     onPodcastClick(podcast); // Call the onPodcastClick function to set the selected podcast in the parent component
   };
 
-  return (
+   return (
     <div className="home-container">
       <h1>All Shows</h1>
       {loading ? (
@@ -52,7 +52,7 @@ const Home = ({ onPodcastClick }) => {
           <ul className="show-list">
             {showPodcast.map((show) => (
               <li key={show.id} onClick={() => handlePodcastClick(show)}>
-                <div className="show-info">
+                <div className={`show-info ${show.id === selectedPodcast?.id ? 'selected' : ''}`}>
                   <img src={show.image} className="show-image" alt={show.title} />
                   <div className="show-details">
                     <h3 className="show-title">{show.title}</h3>

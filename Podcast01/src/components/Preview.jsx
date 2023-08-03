@@ -28,13 +28,6 @@ const Preview = ({ podcastId }) => {
     return <p>No data found for this podcast.</p>;
   }
 
-  const handlePodcastClick = (podcast) => {
-    // Toggle the selected podcast, i.e., if it's already selected, set it to null, otherwise set it to the clicked podcast
-    setSelectedPodcast((prevSelectedPodcast) =>
-      prevSelectedPodcast === podcast ? null : podcast
-    );
-  };
-
   return (
     <div className="preview-container">
       <h2>{podcast.title}</h2>
