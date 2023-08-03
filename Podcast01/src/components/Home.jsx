@@ -1,14 +1,10 @@
-
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import '../index.css';
-import Preview from './Preview';
 
 export default function Home() {
   const [showPodcast, setPodcast] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [selectedPodcast, setSelectedPodcast] = useState(null); // Track the selected podcast
-
+  const [selectedPodcast, setSelectedPodcast] = useState(null);
 
   useEffect(() => {
     axios
@@ -79,6 +75,6 @@ export default function Home() {
       )}
     </div>
   );
-}
+};
 
 

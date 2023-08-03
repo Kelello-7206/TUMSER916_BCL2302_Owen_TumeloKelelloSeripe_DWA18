@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Favorite from './Favorite';
 
 const Preview = ({ podcastId }) => {
   const [podcast, setPodcast] = useState(null);

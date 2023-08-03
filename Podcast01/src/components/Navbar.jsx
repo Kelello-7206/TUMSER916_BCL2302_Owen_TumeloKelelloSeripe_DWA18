@@ -1,25 +1,19 @@
-import React, { useState } from 'react';
-import './index.css';
-import Navbar from './components/Navbar';
-import Home from './components/Home';
-import Favorite from './components/Favorite';
-import Preview from './components/Preview';
+import React from 'react';
+import '../index.css';
 
-function App() {
-  const [currentPage, setCurrentPage] = useState('home');
-
-  const handleNavigation = (page) => {
-    setCurrentPage(page);
+const Navbar = ({ onNavigate }) => {
+  const handleNavigationClick = (page) => {
+    onNavigate(page);
   };
 
   return (
-    <>
-      <Navbar onNavigate={handleNavigation} />
-      {currentPage === 'home' && <Home />}
-      {currentPage === 'favorite' && <Favorite />}
-      {currentPage === 'preview' && <Preview />}
-    </>
+    <nav className="navbar">
+      <button onClick={() => handleNavigationClick('home')}>Home</button>
+      <button onClick={() => handleNavigationClick('favorite')}>Favorite</button>
+      <button onClick={() => handleNavigationClick('preview')}>Preview</button>
+      {/* You can add more buttons here for additional pages */}
+    </nav>
   );
-}
+};
 
-export default App;
+export default Navbar;
