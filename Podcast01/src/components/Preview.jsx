@@ -44,8 +44,7 @@ const Preview = ({ podcastId }) => {
                       <h4>{episode.title}</h4>
                       <p>{episode.description}</p>
                       <audio controls>
-                        <source src={episode.file} type="audio/mpeg" />
-                        Your browser does not support the audio element.
+                        <source src={episode.file} type="audio/mp3" />
                       </audio>
                     </li>
                   ))
