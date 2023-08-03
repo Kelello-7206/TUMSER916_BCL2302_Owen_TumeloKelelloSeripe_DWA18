@@ -1,48 +1,25 @@
-import React from "react"
-import '../index.css'
+import React, { useState } from 'react';
+import './index.css';
+import Navbar from './components/Navbar';
+import Home from './components/Home';
+import Favorite from './components/Favorite';
+import Preview from './components/Preview';
 
+function App() {
+  const [currentPage, setCurrentPage] = useState('home');
 
-
-
-export default function Navbar() {
-
+  const handleNavigation = (page) => {
+    setCurrentPage(page);
+  };
 
   return (
-    <nav className="navbar">
-      {/* Left button to drop down the menu */}
-      <button className="menu-button">
-        Menu
-      </button>
-
-
-      {/* Dropdown menu options */}
-      { (
-        <ul className="menu">
-          <li>hoooo
-          </li>
-          <li>hoooo
-          </li>
-          <li>hoooo
-          </li>
-          {/* Add more menu items as needed */}
-        </ul>
-      )}
-
-
-      {/* Right buttons */}
-      <div className="right-buttons">
-        <button>
-          {/* Button 1 on the right */}
-          Search
-        </button>
-        <button>
-          {/* Button 2 on the right */}
-          User
-        </button>
-      </div>
-    </nav>
+    <>
+      <Navbar onNavigate={handleNavigation} />
+      {currentPage === 'home' && <Home />}
+      {currentPage === 'favorite' && <Favorite />}
+      {currentPage === 'preview' && <Preview />}
+    </>
   );
-
 }
 
-
+export default App;

@@ -4,7 +4,6 @@ import axios from 'axios';
 import '../index.css';
 import Preview from './Preview';
 
-
 export default function Home() {
   const [showPodcast, setPodcast] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -37,7 +36,6 @@ export default function Home() {
     9: 'Kids and Family',
   };
 
-
   const getGenres = (genreIds) => {
     if (Array.isArray(genreIds)) {
       return genreIds.map((id) => genreData[id]).join(', ');
@@ -46,14 +44,12 @@ export default function Home() {
     }
   };
 
-
   const handlePodcastClick = (podcast) => {
     // Toggle the selected podcast, i.e., if it's already selected, set it to null, otherwise set it to the clicked podcast
     setSelectedPodcast((prevSelectedPodcast) =>
       prevSelectedPodcast === podcast ? null : podcast
     );
   };
-
 
   return (
     <div className="home-container">
