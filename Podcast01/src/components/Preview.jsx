@@ -4,7 +4,6 @@ import axios from 'axios';
 const Preview = ({ podcastId }) => {
   const [podcast, setPodcast] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
     axios
@@ -18,32 +17,6 @@ const Preview = ({ podcastId }) => {
         setLoading(false);
       });
   }, [podcastId]);
-  
-  const localStorageKey = 'favoriteEpisodes';
-
-  useEffect(() => {
-    // Load favorites from local storage on page load
-    const storedFavorites = JSON.parse(localStorage.getItem(localStorageKey));
-    if (storedFavorites && Array.isArray(storedFavorites)) {
-      setFavorites(storedFavorites);
-    }
-  }, []);
-
-  const addToFavorites = (episode) => {
-    setFavorites((prevFavorites) => [...prevFavorites, episode]);
-  };
-
-  const removeFromFavorites = (episode) => {
-    setFavorites((prevFavorites) =>
-      prevFavorites.filter((favEpisode) => favEpisode !== episode)
-    );
-  };
-
-  useEffect(() => {
-    // Save favorites to local storage whenever it changes
-    localStorage.setItem(localStorageKey, JSON.stringify(favorites));
-  }, [favorites]);
-
 
   if (loading) {
     return <p>Loading...</p>;
@@ -53,44 +26,30 @@ const Preview = ({ podcastId }) => {
     <div className="preview-container">
       <h2>{podcast.title}</h2>
       <p>{podcast.description}</p>
-      <ul>
-        {Array.isArray(podcast.seasons) ? (
-          podcast.seasons.map((season, index) => (
-            <li key={index}>
-              <h3>{season.title}</h3>
-              <img src={season.image} className="show-image" alt={season.title} />
+      {Array.isArray(podcast.seasons) ? (
+        podcast.seasons.map((season, index) => (
+          <div key={index}>
+            <h3>{season.title}</h3>
+            <img src={season.image} className="show-image" alt={season.title} />
+            {Array.isArray(season.episodes) ? (
               <ul>
-                {Array.isArray(season.episodes) ? (
-                  season.episodes.map((episode, index) => (
-                    <li key={index}>
-                      <h4>{episode.title}</h4>
-                      <p>{episode.description}</p>
-                      <audio controls>
-                        <source src={episode.file} type="audio/mp3" />
-                      </audio>
-                      <button onClick={() => addToFavorites(episode)}>
-                        Add to Favorites
-                      </button>
-                    </li>
-                  ))
-                ) : (
-                  <li>No episodes found.</li>
-                )}
+                {season.episodes.map((episode, episodeIndex) => (
+                  <li key={episodeIndex}>
+                    <h4>{episode.title}</h4>
+                    <p>{episode.description}</p>
+                    <audio controls>
+                      <source src={episode.file} type="audio/mp3" />
+                    </audio>
+                  </li>
+                ))}
               </ul>
-            </li>
-          ))
-        ) : (
-          <li>No seasons found.</li>
-        )}
-      </ul>
-
-      {favorites.length > 0 && (
-        <div>
-          <h2>Your Favorites</h2>
-          {favorites.map((episode, index) => (
-            <Favorite key={index} episode={episode} removeFromFavorites={removeFromFavorites} />
-          ))}
-        </div>
+            ) : (
+              <p>No episodes found for this season.</p>
+            )}
+          </div>
+        ))
+      ) : (
+        <p>No seasons found for this podcast.</p>
       )}
     </div>
   );

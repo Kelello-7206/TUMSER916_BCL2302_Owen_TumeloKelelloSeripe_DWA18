@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Preview from './Preview';
+
 
 export default function Home() {
   const [showPodcast, setPodcast] = useState([]);
