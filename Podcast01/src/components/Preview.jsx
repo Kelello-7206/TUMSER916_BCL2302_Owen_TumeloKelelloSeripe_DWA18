@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const Preview = ({ podcastId }) => {
+const Preview = ({ podcastId, onFavoriteClick }) => { // Add 'onFavoriteClick' prop
   const [podcast, setPodcast] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -19,6 +19,12 @@ const Preview = ({ podcastId }) => {
         });
     }
   }, [podcastId]);
+
+  const handleFavoriteClick = () => {
+    if (podcast) {
+      onFavoriteClick(podcast); // Call the 'onFavoriteClick' function to add the selected podcast to favorites
+    }
+  };
 
   if (loading) {
     return <p>Loading...</p>;
@@ -46,6 +52,7 @@ const Preview = ({ podcastId }) => {
                     <audio controls>
                       <source src={episode.file} type="audio/mp3" />
                     </audio>
+                    <button onClick={handleFavoriteClick}>Favorite</button> {/* Add the onClick handler */}
                   </li>
                 ))}
               </ul>
