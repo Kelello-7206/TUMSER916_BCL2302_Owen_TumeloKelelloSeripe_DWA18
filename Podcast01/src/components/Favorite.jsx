@@ -1,34 +1,52 @@
 // Favorite.js
-
 import React, { useEffect, useState } from 'react';
-import Search from './Search';
+import { supabase } from './App'; // Import the Supabase client
 
-const Favorite = ({ favorites, setFavorites, removeFromFavorites }) => {
+const Favorite = ({ user }) => {
   const [localFavorites, setLocalFavorites] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setLocalFavorites(favorites); // Update localFavorites when favorites prop changes
-  }, [favorites]);
+    const fetchFavorites = async () => {
+      const { data, error } = await supabase
+        .from('favorites')
+        .select('*')
+        .eq('user_id', user.id);
+      if (error) {
+        console.error('Error fetching favorites:', error.message);
+      } else {
+        setLocalFavorites(data);
+      }
+      setLoading(false);
+    };
+    if (user) {
+      fetchFavorites();
+    }
+  }, [user]);
 
-  // Function to update the data with searched and sorted items
-  const updateData = (data) => {
-    setLocalFavorites(data);
+  const handleRemoveFromFavorites = async (episode) => {
+    const { error } = await supabase.from('favorites').delete().eq('id', episode.id);
+    if (error) {
+      console.error('Error removing from favorites:', error.message);
+    } else {
+      setLocalFavorites((prevFavorites) => prevFavorites.filter((item) => item.id !== episode.id));
+    }
   };
 
   return (
     <div className="favorite-container">
       <h1>Your Favorites</h1>
-      {/* Include the Search component */}
-      <Search data={favorites} updateData={updateData} />
-      {localFavorites.length > 0 ? (
+      {loading ? (
+        <p>Loading...</p>
+      ) : localFavorites.length > 0 ? (
         <ul className="favorite-list">
-          {localFavorites.map((episode, index) => (
-            <li key={index} className="favorite-item">
-              {/* Your favorite item UI here */}
-              <h4>{episode.title}</h4>
-              <p>{episode.description}</p>
-              {/* Add a button to remove the episode from favorites */}
-              <button onClick={() => removeFromFavorites(episode)}>Remove from Favorites</button>
+          {localFavorites.map((episode) => (
+            <li key={episode.id} className="favorite-item">
+              <h4>Season: {episode.season}</h4>
+              <h4>Title: {episode.title}</h4>
+              <h4>Episode: {episode.episode}</h4>
+              <p>Description: {episode.description}</p>
+              <button onClick={() => handleRemoveFromFavorites(episode)}>Remove from Favorites</button>
             </li>
           ))}
         </ul>

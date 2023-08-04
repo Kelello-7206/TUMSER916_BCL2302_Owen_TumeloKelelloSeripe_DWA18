@@ -5,8 +5,16 @@ import Home from './components/Home';
 import Favorite from './components/Favorite';
 import Preview from './components/Preview';
 import History from './components/History';
+import { createClient } from '@supabase/supabase-js';
+
 
 function App() {
+
+
+  const supabaseUrl = 'https://fwsulwcbmsvkhpbhdokp.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ3c3Vsd2NibXN2a2hwYmhkb2twIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTExNTk3NTcsImV4cCI6MjAwNjczNTc1N30.pGzsnq9JfKW7yEgXbLxrF7etAIiK8qrleNSCRg4xcxM';
+const supabase = createClient(supabaseUrl, supabaseKey);
+
   const [currentPage, setCurrentPage] = useState(localStorage.getItem('currentPage') || 'home');
   const [selectedPodcast, setSelectedPodcast] = useState(
     JSON.parse(localStorage.getItem('selectedPodcast')) || null
