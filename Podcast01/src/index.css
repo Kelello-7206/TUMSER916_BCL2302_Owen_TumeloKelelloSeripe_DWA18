@@ -1,73 +1,36 @@
 /* CSS for Navbar */
-.navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+
+.navbar-container {
   background-color: #333;
-  padding: 10px;
-  color: #fff;
-  position: fixed; /* Add this line to make the navbar fixed */
-  top: 0; /* Add this line to position the navbar at the top of the viewport */
-  left: 0; /* Add this line to position the navbar at the left of the viewport */
-  right: 0; /* Add this line to position the navbar at the right of the viewport */
-  z-index: 1000; /* Add this line to ensure the navbar appears above other elements */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 60px;
+  padding: 0 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.menu-button {
-  background-color: transparent;
+.navbar-container button {
+  background-color: #fff;
+  color: #333;
   border: none;
-  color: #fff;
-  cursor: pointer;
-}
-
-.menu {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  position: absolute;
-  top: 40px;
-  left: 10px;
-  background-color: #444;
-  border: 1px solid #555;
+  padding: 10px 20px;
   border-radius: 5px;
-  display: flex;
-  flex-direction: column;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.menu li {
-  padding: 10px;
-  border-bottom: 1px solid #555;
-}
-
-.menu li:last-child {
-  border-bottom: none;
-}
-
-.menu li a {
-  color: #fff;
-  text-decoration: none;
-}
-
-.right-buttons {
-  display: flex;
-}
-
-.right-buttons button {
-  background-color: #555;
-  border: none;
-  color: #fff;
-  padding: 10px 15px;
-  margin-left: 5px;
+  font-size: 16px;
   cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
-/* Show the dropdown menu when 'showMenu' is true */
-.navbar.show .menu {
-  opacity: 1;
-  pointer-events: auto;
+.navbar-container button:hover {
+  background-color: #f0f0f0;
 }
+
+
+
 
 /* ===========================================================================================================================*/
 

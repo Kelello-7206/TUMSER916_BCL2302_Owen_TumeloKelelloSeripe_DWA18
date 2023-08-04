@@ -21,6 +21,23 @@ const History = () => {
     setLastListened({});
   };
 
+  const handleEpisodeComplete = (episode) => {
+    if (!listeningHistory.some((item) => item.id === episode.id)) {
+      setListeningHistory((prevHistory) => [...prevHistory, episode]);
+    }
+  };
+
+  const handleEpisodeProgress = (episode, currentTime) => {
+    if (currentTime >= episode.duration - 10) {
+      // If the current time is within the last 10 seconds of the episode duration
+      setLastListened({
+        show: episode.show,
+        episode: episode.title,
+        progress: currentTime,
+      });
+    }
+  };
+
   return (
     <div className="history-container">
       <h1>Listening History</h1>
@@ -29,7 +46,7 @@ const History = () => {
           {listeningHistory.map((episode, index) => (
             <li key={index}>
               <p>Show: {episode.show}</p>
-              <p>Episode: {episode.episode}</p>
+              <p>Episode: {episode.title}</p>
             </li>
           ))}
         </ul>
@@ -41,6 +58,7 @@ const History = () => {
           <h2>Last Listened Episode</h2>
           <p>Show: {lastListened.show}</p>
           <p>Episode: {lastListened.episode}</p>
+          <p>Last Listened Progress: {lastListened.progress} seconds</p>
         </div>
       )}
       <button onClick={handleResetProgress}>Reset Listening Progress</button>

@@ -1,9 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const Preview = ({ podcastId, onFavoriteClick }) => { // Add 'onFavoriteClick' prop
+const Preview = ({ podcastId, onFavoriteClick, onEpisodeComplete, onEpisodeProgress }) => { // Add 'onFavoriteClick' prop
   const [podcast, setPodcast] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  const handleEpisodeComplete = () => {
+    // Call the function from the App component
+    onEpisodeComplete(podcast);
+  };
+
+  const handleEpisodeProgress = (currentTime) => {
+    // Call the function from the App component
+    onEpisodeProgress(podcast, currentTime);
+  };
 
   useEffect(() => {
     if (podcastId) {
@@ -49,10 +59,14 @@ const Preview = ({ podcastId, onFavoriteClick }) => { // Add 'onFavoriteClick' p
                   <li key={episodeIndex}>
                     <h4>{episode.title}</h4>
                     <p>{episode.description}</p>
-                    <audio controls>
+                    <audio
+                      controls
+                      onEnded={handleEpisodeComplete}
+                      onTimeUpdate={(e) => handleEpisodeProgress(e.target.currentTime)}
+                    >
                       <source src={episode.file} type="audio/mp3" />
                     </audio>
-                    <button onClick={handleFavoriteClick}>Favorite</button> {/* Add the onClick handler */}
+                    <button onClick={() => onFavoriteClick(episode)}>Favorite</button> {/* Use the onFavoriteClick function prop */}
                   </li>
                 ))}
               </ul>
