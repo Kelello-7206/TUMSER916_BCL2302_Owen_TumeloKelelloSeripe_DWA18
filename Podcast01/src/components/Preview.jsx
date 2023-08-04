@@ -1,18 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const Preview = ({ podcastId, onFavoriteClick, onEpisodeComplete, onEpisodeProgress }) => { // Add 'onFavoriteClick' prop
+const Preview = ({ podcastId, onFavoriteClick, onEpisodeComplete, onEpisodeProgress }) => {
   const [podcast, setPodcast] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [selectedSeason, setSelectedSeason] = useState(null);
 
   const handleEpisodeComplete = () => {
-    // Call the function from the App component
     onEpisodeComplete(podcast);
   };
 
   const handleEpisodeProgress = (currentTime) => {
-    // Call the function from the App component
     onEpisodeProgress(podcast, currentTime);
+  };
+
+  const handleFavoriteClick = () => {
+    if (podcast) {
+      onFavoriteClick(podcast);
+    }
   };
 
   useEffect(() => {
@@ -30,12 +35,6 @@ const Preview = ({ podcastId, onFavoriteClick, onEpisodeComplete, onEpisodeProgr
     }
   }, [podcastId]);
 
-  const handleFavoriteClick = () => {
-    if (podcast) {
-      onFavoriteClick(podcast); // Call the 'onFavoriteClick' function to add the selected podcast to favorites
-    }
-  };
-
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -44,6 +43,10 @@ const Preview = ({ podcastId, onFavoriteClick, onEpisodeComplete, onEpisodeProgr
     return <p>No data found for this podcast.</p>;
   }
 
+  const handleSeasonClick = (season) => {
+    setSelectedSeason((prevSeason) => (prevSeason === season ? null : season));
+  };
+
   return (
     <div className="preview-container">
       <h2>{podcast.title}</h2>
@@ -51,10 +54,14 @@ const Preview = ({ podcastId, onFavoriteClick, onEpisodeComplete, onEpisodeProgr
       {Array.isArray(podcast.seasons) ? (
         podcast.seasons.map((season, index) => (
           <div key={index}>
-            <h3>{season.title}</h3>
-            <img src={season.image} className="show-image" alt={season.title} />
-            {Array.isArray(season.episodes) ? (
-              <ul>
+            {/* Use a button to display the season title and image */}
+            <button onClick={() => handleSeasonClick(season)}>
+              <h2>Season: {season.season}</h2>
+              <h3>{season.title}</h3>
+              <img src={season.image} className="show-image" alt={season.title} />
+            </button>
+            {selectedSeason === season && Array.isArray(season.episodes) && (
+              <ul className="episodes-list">
                 {season.episodes.map((episode, episodeIndex) => (
                   <li key={episodeIndex}>
                     <h4>{episode.title}</h4>
@@ -66,12 +73,10 @@ const Preview = ({ podcastId, onFavoriteClick, onEpisodeComplete, onEpisodeProgr
                     >
                       <source src={episode.file} type="audio/mp3" />
                     </audio>
-                    <button onClick={() => onFavoriteClick(episode)}>Favorite</button> {/* Use the onFavoriteClick function prop */}
+                    <button onClick={handleFavoriteClick}>Favorite</button>
                   </li>
                 ))}
               </ul>
-            ) : (
-              <p>No episodes found for this season.</p>
             )}
           </div>
         ))

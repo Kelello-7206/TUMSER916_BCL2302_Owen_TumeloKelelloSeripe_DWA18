@@ -8,7 +8,7 @@ const Navbar = ({ onNavigate }) => {
   return (
     <div className="navbar-container">
       <button onClick={() => handleNavigation('home')}>Home</button>
-      <button onClick={() => handleNavigation('favorite')}>Favorite</button>
+      <button onClick={() => handleNavigation('favorite')}>Favorites</button>
       <button onClick={() => handleNavigation('preview')}>Preview</button>
       <button onClick={() => handleNavigation('history')}>History</button> {/* Add the History button */}
     </div>
