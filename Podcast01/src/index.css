@@ -100,8 +100,8 @@ h1 {
 
 /* Preview.css */
 .preview-container {
-  margin: 50px;
-  padding: 20px;
+  margin: 10px;
+  padding: 15px;
   border: 1px solid #ccc;
   border-radius: 8px;
   background-color: #f9f9f9;
@@ -149,6 +149,11 @@ button {
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.2s ease;
+  display: block;
+  margin: 20px;
+  margin: 0 auto; /* Center align the buttons */
+  height: 50%;
+  width: 50%; /* Set a fixed width for the buttons */
 }
 
 button:hover {
@@ -177,6 +182,7 @@ audio {
   background-color: #f5f5f5;
 }
 
+/* Add a class to show the episodes list */
 .show-episodes {
   display: block !important;
 }

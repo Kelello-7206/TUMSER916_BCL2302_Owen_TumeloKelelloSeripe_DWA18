@@ -57,27 +57,25 @@ const Preview = ({ podcastId, onFavoriteClick, onEpisodeComplete, onEpisodeProgr
             {/* Use a button to display the season title and image */}
             <button onClick={() => handleSeasonClick(season)}>
               <h2>Season: {season.season}</h2>
-              <h3>{season.title}</h3>
+              <h3>Title: {season.title}</h3>
               <img src={season.image} className="show-image" alt={season.title} />
             </button>
-            {selectedSeason === season && Array.isArray(season.episodes) && (
-              <ul className="episodes-list">
-                {season.episodes.map((episode, episodeIndex) => (
-                  <li key={episodeIndex}>
-                    <h4>{episode.title}</h4>
-                    <p>{episode.description}</p>
-                    <audio
-                      controls
-                      onEnded={handleEpisodeComplete}
-                      onTimeUpdate={(e) => handleEpisodeProgress(e.target.currentTime)}
-                    >
-                      <source src={episode.file} type="audio/mp3" />
-                    </audio>
-                    <button onClick={handleFavoriteClick}>Favorite</button>
-                  </li>
-                ))}
-              </ul>
-            )}
+            <ul className={`episodes-list ${selectedSeason === season ? 'show-episodes' : ''}`}>
+              {season.episodes.map((episode, episodeIndex) => (
+                <li key={episodeIndex}>
+                  <h4>{episode.title}</h4>
+                  <p>{episode.description}</p>
+                  <audio
+                    controls
+                    onEnded={handleEpisodeComplete}
+                    onTimeUpdate={(e) => handleEpisodeProgress(e.target.currentTime)}
+                  >
+                    <source src={episode.file} type="audio/mp3" />
+                  </audio>
+                  <button onClick={handleFavoriteClick}>Favorite</button>
+                </li>
+              ))}
+            </ul>
           </div>
         ))
       ) : (
