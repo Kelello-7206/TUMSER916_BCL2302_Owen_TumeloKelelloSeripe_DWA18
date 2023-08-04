@@ -4,6 +4,7 @@ import axios from 'axios';
 const Home = ({ onPodcastClick, selectedPodcast }) => {
   const [showPodcast, setPodcast] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [showFullDescription, setShowFullDescription] = useState(false);
 
   useEffect(() => {
     axios
@@ -39,10 +40,23 @@ const Home = ({ onPodcastClick, selectedPodcast }) => {
   };
 
   const handlePodcastClick = (podcast) => {
-    onPodcastClick(podcast); // Call the onPodcastClick function to set the selected podcast in the parent component
+    onPodcastClick(podcast);
   };
 
-   return (
+  const toggleDescription = () => {
+    setShowFullDescription((prevState) => !prevState);
+  };
+
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    return `${hours}:${minutes}`;
+  };
+
+
+  return (
     <div className="home-container">
       <h1>All Shows</h1>
       {loading ? (
@@ -56,10 +70,18 @@ const Home = ({ onPodcastClick, selectedPodcast }) => {
                   <img src={show.image} className="show-image" alt={show.title} />
                   <div className="show-details">
                     <h3 className="show-title">{show.title}</h3>
-                    <p className="show-description">{show.description}</p>
+                    <p className="show-description">
+                      {show.description.split('\n').slice(0, 3).join('\n')}
+                      {show.description.split('\n').length > 3 && !showFullDescription && '...'}
+                    </p>
+                    {show.description.split('\n').length > 3 && (
+                      <button onClick={toggleDescription}>
+                        {showFullDescription ? 'Show Less' : 'Read More'}
+                      </button>
+                    )}
                     <p>Genre: {getGenres(show.genres)}</p>
                     <p className="show-seasons">Numbers of seasons: {show.seasons}</p>
-                    <p className="show-updated">Updated: {show.updated}</p>
+                      <p className="show-updated">Updated: {formatDate(show.updated)}</p>
                   </div>
                 </div>
               </li>

@@ -35,6 +35,123 @@
 
 /*=========================================================================================================================== */
 
+/* Home.css */
+
+/* Main container for the Home component */
+.home-container {
+  text-align: center;
+  padding: 20px;
+}
+
+/* Header style */
+h1 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Show list style */
+.show-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Show link style */
+.show-link {
+  border: none;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+}
+
+/* Show info container style */
+.show-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+/* Show image style */
+.show-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 20px;
+}
+
+/* Show title style */
+.show-title {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+/* Show description style */
+.show-description {
+  font-size: 16px;
+  white-space: pre-line; /* Preserve newlines from the API */
+  line-height: 1.5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3; /* Show maximum 3 lines before truncating */
+}
+
+.show-description.show-full-description {
+  -webkit-line-clamp: unset; /* Show all lines when showFullDescription is true */
+}
+
+/* Read More button style */
+.show-link button {
+  background-color: #e6e6e6;
+  border: none;
+  color: #333;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.show-link button:hover {
+  background-color: #ccc;
+}
+
+/* Show seasons style */
+.show-seasons {
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+/* Show updated style */
+.show-updated {
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+/* Selected show style */
+.show-link.selected {
+  background-color: #f5f5f5;
+}
+
+.show-info:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+/*=========================================================================================================================== */
+
 /* Preview.css */
 .preview-container {
   margin: 10px;
@@ -180,6 +297,7 @@ audio {
 .favorite-item button:hover {
   background-color: #ccc;
 }
+
 /*===========================================================================================================================
 
 /* Season.css */
