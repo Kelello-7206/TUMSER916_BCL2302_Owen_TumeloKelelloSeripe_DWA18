@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Favorite from './components/Favorite';
 import Preview from './components/Preview';
+import History from './components/History'; 
 
 function App() {
 
@@ -44,6 +45,7 @@ function App() {
       {currentPage === 'preview' && (
         <Preview podcastId={selectedPodcast?.id} onFavoriteClick={handleFavoriteClick} />
       )}
+      {currentPage === 'history' && <History />} {/* Add the History component */}
     </>
   );
 }
