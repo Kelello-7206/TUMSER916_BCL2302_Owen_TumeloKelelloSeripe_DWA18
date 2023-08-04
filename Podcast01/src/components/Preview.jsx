@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Season from './Season'; // Import the new component
 
 const Preview = ({ podcastId, onFavoriteClick, onEpisodeComplete, onEpisodeProgress }) => {
   const [podcast, setPodcast] = useState(null);
@@ -53,36 +54,15 @@ const Preview = ({ podcastId, onFavoriteClick, onEpisodeComplete, onEpisodeProgr
       <p>{podcast.description}</p>
       {Array.isArray(podcast.seasons) ? (
         podcast.seasons.map((season, index) => (
-          <div key={index}> {/* Change the key to use a unique identifier (e.g., season ID) */}
-            {/* Use a button to display the season title and image */}
-            <button
-              className={`season-button${selectedSeason === season ? ' selected' : ''}`}
-              onClick={() => handleSeasonClick(season)}
-            >
-              <h2>Season: {season.season}</h2>
-              <h3>Title: {season.title}</h3>
-              <img src={season.image} className="show-image" alt={season.title} />
-            </button>
-            {selectedSeason === season && Array.isArray(season.episodes) && (
-              <ul className={`episodes-list${selectedSeason === season ? ' show-episodes' : ''}`}>
-                {season.episodes.map((episode, episodeIndex) => (
-                  <li key={episodeIndex}> {/* Change the key to use a unique identifier (e.g., episode ID) */}
-                    <h4>{episode.title}</h4>
-                    <h4>Episode No {episode.episode}</h4>
-                    <p>Description: {episode.description}</p>
-                    <audio
-                      controls
-                      onEnded={() => handleEpisodeComplete(episode)}
-                      onTimeUpdate={(e) => handleEpisodeProgress(episode, e.target.currentTime)}
-                    >
-                      <source src={episode.file} type="audio/mp3" />
-                    </audio>
-                    <button onClick={() => handleFavoriteClick(episode)}>Favorite</button>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
+          <Season
+            key={index}
+            season={season}
+            selectedSeason={selectedSeason}
+            onSeasonClick={handleSeasonClick}
+            onEpisodeComplete={handleEpisodeComplete}
+            onEpisodeProgress={handleEpisodeProgress}
+            onFavoriteClick={handleFavoriteClick}
+          />
         ))
       ) : (
         <p>No seasons found for this podcast.</p>
