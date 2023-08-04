@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Search from './Search'; // Import the Search component
 
 const Home = ({ onPodcastClick, selectedPodcast }) => {
   const [showPodcast, setPodcast] = useState([]);
@@ -47,7 +48,6 @@ const Home = ({ onPodcastClick, selectedPodcast }) => {
     setShowFullDescription((prevState) => !prevState);
   };
 
-
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     const hours = date.getHours().toString().padStart(2, '0');
@@ -55,10 +55,15 @@ const Home = ({ onPodcastClick, selectedPodcast }) => {
     return `${hours}:${minutes}`;
   };
 
+  // Function to update the data with searched and sorted items
+  const updateData = (data) => {
+    setPodcast(data);
+  };
 
   return (
     <div className="home-container">
       <h1>All Shows</h1>
+      <Search data={showPodcast} updateData={updateData} />
       {loading ? (
         <p>Loading...</p>
       ) : (
@@ -81,7 +86,7 @@ const Home = ({ onPodcastClick, selectedPodcast }) => {
                     )}
                     <p>Genre: {getGenres(show.genres)}</p>
                     <p className="show-seasons">Numbers of seasons: {show.seasons}</p>
-                      <p className="show-updated">Updated: {formatDate(show.updated)}</p>
+                    <p className="show-updated">Updated: {formatDate(show.updated)}</p>
                   </div>
                 </div>
               </li>
