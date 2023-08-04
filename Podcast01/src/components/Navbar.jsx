@@ -1,18 +1,17 @@
 import React from 'react';
-import '../index.css';
 
 const Navbar = ({ onNavigate }) => {
-  const handleNavigationClick = (page) => {
+  const handleNavigation = (page) => {
     onNavigate(page);
   };
 
   return (
-    <nav className="navbar">
-      <button onClick={() => handleNavigationClick('home')}>Home</button>
-      <button onClick={() => handleNavigationClick('favorite')}>Favorite</button>
-      <button onClick={() => handleNavigationClick('preview')}>Preview</button>
-      {/* You can add more buttons here for additional pages */}
-    </nav>
+    <div className="navbar-container">
+      <button onClick={() => handleNavigation('home')}>Home</button>
+      <button onClick={() => handleNavigation('favorite')}>Favorite</button>
+      <button onClick={() => handleNavigation('preview')}>Preview</button>
+      <button onClick={() => handleNavigation('history')}>History</button> {/* Add the History button */}
+    </div>
   );
 };
 
