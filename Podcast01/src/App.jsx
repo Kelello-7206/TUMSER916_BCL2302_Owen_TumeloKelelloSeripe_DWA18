@@ -41,6 +41,13 @@ function App() {
     }
   };
 
+  // Define handleFavoriteClick function to handle favoriting episodes
+  const handleFavoriteClick = (episode) => {
+    if (!favorites.some((fav) => fav.id === episode.id)) {
+      setFavorites((prevFavorites) => [...prevFavorites, episode]);
+    }
+  };
+
   useEffect(() => {
     localStorage.setItem('currentPage', currentPage);
     localStorage.setItem('selectedPodcast', JSON.stringify(selectedPodcast));
@@ -49,6 +56,13 @@ function App() {
   useEffect(() => {
     localStorage.setItem('favoriteEpisodes', JSON.stringify(favorites));
   }, [favorites]);
+
+  // Define removeFromFavorites function in the App component
+  const removeFromFavorites = (episode) => {
+    setFavorites((prevFavorites) =>
+      prevFavorites.filter((favEpisode) => favEpisode !== episode)
+    );
+  };
 
   return (
     <div>
@@ -59,12 +73,12 @@ function App() {
           <Home onPodcastClick={setSelectedPodcast} selectedPodcast={selectedPodcast} />
         )}
         {currentPage === 'favorite' && (
-          <Favorite favorites={favorites} setFavorites={setFavorites} />
+          <Favorite favorites={favorites} setFavorites={setFavorites} removeFromFavorites={removeFromFavorites} />
         )}
         {currentPage === 'preview' && (
           <Preview
             podcastId={selectedPodcast?.id}
-            onFavoriteClick={handleFavoriteClick} // Pass the handleFavoriteClick function as a prop
+            onFavoriteClick={handleFavoriteClick}
             onEpisodeComplete={handleEpisodeComplete}
             onEpisodeProgress={handleEpisodeProgress}
           />
