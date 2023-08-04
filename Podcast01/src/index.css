@@ -1,4 +1,3 @@
-/* Navbar.css */
 .navbar-container {
   background-color: #333;
   position: fixed;
@@ -32,73 +31,6 @@
 /* Add some space below the navbar to prevent content from being hidden behind it */
 .content {
   margin-top: 60px;
-}
-
-/* ===========================================================================================================================*/
-/*Home.css*/
-
-/* Main container for the Home component */
-.home-container {
-  text-align: center;
-  padding: 20px;
-}
-
-/* Header style */
-h1 {
-  font-size: 28px;
-  margin-bottom: 20px;
-  color: #333;
-}
-
-/* Show list style */
-.show-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-/* Show link style */
-.show-link {
-  text-decoration: none;
-  color: #333;
-}
-
-/* Show info container style */
-.show-info {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease;
-}
-
-/* Show image style */
-.show-image {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-right: 20px;
-}
-
-/* Show title style */
-.show-title {
-  font-size: 20px;
-  margin-bottom: 5px;
-}
-
-/* Show description style */
-.show-description {
-  font-size: 16px;
-}
-
-/* Show info hover effect */
-.show-info:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /*=========================================================================================================================== */
@@ -248,36 +180,7 @@ audio {
 .favorite-item button:hover {
   background-color: #ccc;
 }
-
-.episode-button {
-  background-color: #e6e6e6;
-  border: none;
-  color: #333;
-  padding: 10px 20px;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-  width: 100%; /* Set the width of the button to fill the available space */
-  text-align: left; /* Align the text to the left inside the button */
-  margin-bottom: 10px; /* Add some margin between episode buttons */
-}
-
-.episode-button.selected {
-  /* Add styles for selected episodes here */
-  background-color: #ccc;
-}
-
-.episode-button h4 {
-  margin-bottom: 5px;
-  color: #666;
-}
-
-.episode-button p {
-  font-size: 16px;
-  margin-bottom: 10px;
-  color: #444;
-}
+/*===========================================================================================================================
 
 /* Season.css */
 
@@ -355,5 +258,59 @@ audio {
 }
 
 .season-details button:hover {
+  background-color: #ccc;
+}
+
+
+/*===========================================================================================================================*/
+
+/* EpisodeButton.css */
+
+.episode-button {
+  background-color: #e6e6e6;
+  border: none;
+  color: #333;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  width: 100%; /* Set the width of the button to fill the available space */
+  text-align: left; /* Align the text to the left inside the button */
+  margin-bottom: 10px; /* Add some margin between episode buttons */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.episode-button.selected {
+  /* Add styles for selected episodes here */
+  background-color: #ccc;
+}
+
+.episode-button h4 {
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.episode-button p {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+.episode-button button {
+  background-color: #e6e6e6;
+  border: none;
+  color: #333;
+  padding: 8px 16px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-top: 10px;
+}
+
+.episode-button button:hover {
   background-color: #ccc;
 }
