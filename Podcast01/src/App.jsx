@@ -51,10 +51,10 @@ function App() {
   }, [favorites]);
 
   return (
-    <>
+    <div>
       <Navbar onNavigate={handleNavigation} />
       <br />
-      <br />
+      <div className="content">
       {currentPage === 'home' && (
         <Home onPodcastClick={setSelectedPodcast} selectedPodcast={selectedPodcast} />
       )}
@@ -70,7 +70,8 @@ function App() {
         />
       )}
       {currentPage === 'history' && <History />}
-    </>
+      </div>
+    </div>
   );
 }
 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Preview from './Preview'
 
 const History = () => {
   const [listeningHistory, setListeningHistory] = useState(
@@ -21,6 +22,7 @@ const History = () => {
     setLastListened({});
   };
 
+  // Move the handleEpisodeComplete and handleEpisodeProgress functions here
   const handleEpisodeComplete = (episode) => {
     if (!listeningHistory.some((item) => item.id === episode.id)) {
       setListeningHistory((prevHistory) => [...prevHistory, episode]);
@@ -29,7 +31,6 @@ const History = () => {
 
   const handleEpisodeProgress = (episode, currentTime) => {
     if (currentTime >= episode.duration - 10) {
-      // If the current time is within the last 10 seconds of the episode duration
       setLastListened({
         show: episode.show,
         episode: episode.title,
@@ -53,15 +54,12 @@ const History = () => {
       ) : (
         <p>No listening history found.</p>
       )}
-      {lastListened.show && lastListened.episode && (
-        <div>
-          <h2>Last Listened Episode</h2>
-          <p>Show: {lastListened.show}</p>
-          <p>Episode: {lastListened.episode}</p>
-          <p>Last Listened Progress: {lastListened.progress} seconds</p>
-        </div>
-      )}
       <button onClick={handleResetProgress}>Reset Listening Progress</button>
+      {/* Pass the handleEpisodeComplete and handleEpisodeProgress as props */}
+      <Preview
+        onEpisodeComplete={handleEpisodeComplete}
+        onEpisodeProgress={handleEpisodeProgress}
+      />
     </div>
   );
 };

@@ -1,5 +1,4 @@
-/* CSS for Navbar */
-
+/* Navbar.css */
 .navbar-container {
   background-color: #333;
   position: fixed;
@@ -12,6 +11,7 @@
   height: 60px;
   padding: 0 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 999; /* Ensure the navbar is on top of other elements */
 }
 
 .navbar-container button {
@@ -27,6 +27,11 @@
 
 .navbar-container button:hover {
   background-color: #f0f0f0;
+}
+
+/* Add some space below the navbar to prevent content from being hidden behind it */
+.content {
+  margin-top: 60px;
 }
 
 /* ===========================================================================================================================*/
@@ -180,9 +185,10 @@ audio {
   border: 1px solid #ccc;
   border-radius: 8px;
   background-color: #f5f5f5;
+  margin-top: 10px; /* Add some margin to separate from the button */
 }
 
 /* Add a class to show the episodes list */
 .show-episodes {
-  display: block !important;
+  display: block;
 }

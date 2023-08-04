@@ -6,17 +6,17 @@ const Preview = ({ podcastId, onFavoriteClick, onEpisodeComplete, onEpisodeProgr
   const [loading, setLoading] = useState(true);
   const [selectedSeason, setSelectedSeason] = useState(null);
 
-  const handleEpisodeComplete = () => {
-    onEpisodeComplete(podcast);
+  const handleEpisodeComplete = (episode) => {
+    onEpisodeComplete(episode);
   };
 
-  const handleEpisodeProgress = (currentTime) => {
-    onEpisodeProgress(podcast, currentTime);
+  const handleEpisodeProgress = (episode, currentTime) => {
+    onEpisodeProgress(episode, currentTime);
   };
 
-  const handleFavoriteClick = () => {
+  const handleFavoriteClick = (episode) => {
     if (podcast) {
-      onFavoriteClick(podcast);
+      onFavoriteClick(episode); // Corrected: Pass the episode as a parameter to onFavoriteClick
     }
   };
 
@@ -55,27 +55,33 @@ const Preview = ({ podcastId, onFavoriteClick, onEpisodeComplete, onEpisodeProgr
         podcast.seasons.map((season, index) => (
           <div key={index}>
             {/* Use a button to display the season title and image */}
-            <button onClick={() => handleSeasonClick(season)}>
+            <button
+              className={`season-button${selectedSeason === season ? ' selected' : ''}`}
+              onClick={() => handleSeasonClick(season)}
+            >
               <h2>Season: {season.season}</h2>
               <h3>Title: {season.title}</h3>
               <img src={season.image} className="show-image" alt={season.title} />
             </button>
-            <ul className={`episodes-list ${selectedSeason === season ? 'show-episodes' : ''}`}>
-              {season.episodes.map((episode, episodeIndex) => (
-                <li key={episodeIndex}>
-                  <h4>{episode.title}</h4>
-                  <p>{episode.description}</p>
-                  <audio
-                    controls
-                    onEnded={handleEpisodeComplete}
-                    onTimeUpdate={(e) => handleEpisodeProgress(e.target.currentTime)}
-                  >
-                    <source src={episode.file} type="audio/mp3" />
-                  </audio>
-                  <button onClick={handleFavoriteClick}>Favorite</button>
-                </li>
-              ))}
-            </ul>
+            {selectedSeason === season && Array.isArray(season.episodes) && (
+              <ul className={`episodes-list${selectedSeason === season ? ' show-episodes' : ''}`}>
+                {season.episodes.map((episodes,episode, episodeIndex) => (
+                  <li key={episodeIndex}>
+                    <h4>{episode.title}</h4>
+                    <h4>Episode No{episodes.episode}</h4>
+                    <p>{episode.description}</p>
+                    <audio
+                      controls
+                      onEnded={() => handleEpisodeComplete(episode)}
+                      onTimeUpdate={(e) => handleEpisodeProgress(episode, e.target.currentTime)}
+                    >
+                      <source src={episode.file} type="audio/mp3" />
+                    </audio>
+                    <button onClick={() => handleFavoriteClick(episode)}>Favorite</button>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         ))
       ) : (

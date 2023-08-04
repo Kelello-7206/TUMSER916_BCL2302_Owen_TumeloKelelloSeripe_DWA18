@@ -20,7 +20,6 @@ const Favorite = ({ favorites, setFavorites }) => { // Pass 'setFavorites' from 
       {localFavorites.length > 0 ? (
         localFavorites.map((episode, index) => (
           <div key={index} className="favorite-item">
-            <h3>{episode.title}</h3>
             <h4>{episode.season}</h4>
             <h4>{episode.title}</h4>
             <p>{episode.description}</p>
