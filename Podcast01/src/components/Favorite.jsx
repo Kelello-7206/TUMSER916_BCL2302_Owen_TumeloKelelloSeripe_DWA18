@@ -1,7 +1,13 @@
+// Favorite.jsx
+
 import React, { useState, useEffect } from 'react';
 
-const Favorite = ({ favorites, setFavorites }) => { // Pass 'setFavorites' from App.js
-  const [localFavorites, setLocalFavorites] = useState(favorites);
+const Favorite = ({ favorites, setFavorites }) => {
+  const [localFavorites, setLocalFavorites] = useState([]);
+
+  useEffect(() => {
+    setLocalFavorites(favorites); // Update localFavorites when favorites prop changes
+  }, [favorites]);
 
   const removeFromFavorites = (episode) => {
     setLocalFavorites((prevFavorites) =>
@@ -10,8 +16,7 @@ const Favorite = ({ favorites, setFavorites }) => { // Pass 'setFavorites' from 
   };
 
   useEffect(() => {
-    // Update the 'favorites' state in the parent component when 'localFavorites' changes
-    setFavorites(localFavorites);
+    setFavorites(localFavorites); // Update the 'favorites' state in the parent component when 'localFavorites' changes
   }, [localFavorites, setFavorites]);
 
   return (
@@ -20,9 +25,10 @@ const Favorite = ({ favorites, setFavorites }) => { // Pass 'setFavorites' from 
       {localFavorites.length > 0 ? (
         localFavorites.map((episode, index) => (
           <div key={index} className="favorite-item">
-            <h4>{episode.season}</h4>
-            <h4>{episode.title}</h4>
-            <p>{episode.description}</p>
+            <h4>Season:{episode.season}</h4>
+            <h4>Title:{episode.title}</h4>
+            <h4>Episode:{episode.episode}</h4>
+            <p>Description:{episode.description}</p>
             <button onClick={() => removeFromFavorites(episode)}>Remove from Favorites</button>
           </div>
         ))

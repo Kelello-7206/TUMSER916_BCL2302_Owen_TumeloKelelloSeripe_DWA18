@@ -19,25 +19,25 @@ function App() {
     setCurrentPage(page);
   };
 
+  // Define listeningHistory and setListeningHistory if used
+  const [listeningHistory, setListeningHistory] = useState([]);
+
   const handleEpisodeComplete = (episode) => {
     if (!listeningHistory.some((item) => item.id === episode.id)) {
       setListeningHistory((prevHistory) => [...prevHistory, episode]);
     }
   };
 
+  // Define setLastListened if used
+  const [setLastListened, setSetLastListened] = useState({});
+
   const handleEpisodeProgress = (episode, currentTime) => {
     if (currentTime >= episode.duration - 10) {
-      setLastListened({
+      setSetLastListened({
         show: episode.show,
         episode: episode.title,
         progress: currentTime,
       });
-    }
-  };
-
-  const handleFavoriteClick = (episode) => {
-    if (!favorites.some((fav) => fav.id === episode.id)) {
-      setFavorites((prevFavorites) => [...prevFavorites, episode]);
     }
   };
 
@@ -55,21 +55,21 @@ function App() {
       <Navbar onNavigate={handleNavigation} />
       <br />
       <div className="content">
-      {currentPage === 'home' && (
-        <Home onPodcastClick={setSelectedPodcast} selectedPodcast={selectedPodcast} />
-      )}
-      {currentPage === 'favorite' && (
-        <Favorite favorites={favorites} setFavorites={setFavorites} />
-      )}
-      {currentPage === 'preview' && (
-        <Preview
-          podcastId={selectedPodcast?.id}
-          onFavoriteClick={handleFavoriteClick} // Pass the handleFavoriteClick function as a prop
-          onEpisodeComplete={handleEpisodeComplete}
-          onEpisodeProgress={handleEpisodeProgress}
-        />
-      )}
-      {currentPage === 'history' && <History />}
+        {currentPage === 'home' && (
+          <Home onPodcastClick={setSelectedPodcast} selectedPodcast={selectedPodcast} />
+        )}
+        {currentPage === 'favorite' && (
+          <Favorite favorites={favorites} setFavorites={setFavorites} />
+        )}
+        {currentPage === 'preview' && (
+          <Preview
+            podcastId={selectedPodcast?.id}
+            onFavoriteClick={handleFavoriteClick} // Pass the handleFavoriteClick function as a prop
+            onEpisodeComplete={handleEpisodeComplete}
+            onEpisodeProgress={handleEpisodeProgress}
+          />
+        )}
+        {currentPage === 'history' && <History />}
       </div>
     </div>
   );
