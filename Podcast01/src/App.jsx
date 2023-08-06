@@ -1,26 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import './index.css';
-import Navbar from './components/Navbar';
-import Home from './components/Home';
-import Favorite from './components/Favorite';
-import Preview from './components/Preview';
-import History from './components/History';
-import { createClient } from '@supabase/supabase-js';
-
+import React, { useEffect, useState } from "react";
+import "./index.css";
+import Navbar from "./components/Navbar";
+import Home from "./components/Home";
+import Favorite from "./components/Favorite";
+import Preview from "./components/Preview";
+import History from "./components/History";
+import { createClient } from "@supabase/supabase-js";
 
 function App() {
+  const supabaseUrl = "https://fwsulwcbmsvkhpbhdokp.supabase.co";
+  const supabaseKey =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ3c3Vsd2NibXN2a2hwYmhkb2twIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTExNTk3NTcsImV4cCI6MjAwNjczNTc1N30.pGzsnq9JfKW7yEgXbLxrF7etAIiK8qrleNSCRg4xcxM";
+  const supabase = createClient(supabaseUrl, supabaseKey);
 
-
-  const supabaseUrl = 'https://fwsulwcbmsvkhpbhdokp.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ3c3Vsd2NibXN2a2hwYmhkb2twIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTExNTk3NTcsImV4cCI6MjAwNjczNTc1N30.pGzsnq9JfKW7yEgXbLxrF7etAIiK8qrleNSCRg4xcxM';
-const supabase = createClient(supabaseUrl, supabaseKey);
-
-  const [currentPage, setCurrentPage] = useState(localStorage.getItem('currentPage') || 'home');
+  const [currentPage, setCurrentPage] = useState(
+    localStorage.getItem("currentPage") || "home"
+  );
   const [selectedPodcast, setSelectedPodcast] = useState(
-    JSON.parse(localStorage.getItem('selectedPodcast')) || null
+    JSON.parse(localStorage.getItem("selectedPodcast")) || null
   );
   const [favorites, setFavorites] = useState(
-    JSON.parse(localStorage.getItem('favoriteEpisodes')) || []
+    JSON.parse(localStorage.getItem("favoriteEpisodes")) || []
   );
 
   const handleNavigation = (page) => {
@@ -57,12 +57,12 @@ const supabase = createClient(supabaseUrl, supabaseKey);
   };
 
   useEffect(() => {
-    localStorage.setItem('currentPage', currentPage);
-    localStorage.setItem('selectedPodcast', JSON.stringify(selectedPodcast));
+    localStorage.setItem("currentPage", currentPage);
+    localStorage.setItem("selectedPodcast", JSON.stringify(selectedPodcast));
   }, [currentPage, selectedPodcast]);
 
   useEffect(() => {
-    localStorage.setItem('favoriteEpisodes', JSON.stringify(favorites));
+    localStorage.setItem("favoriteEpisodes", JSON.stringify(favorites));
   }, [favorites]);
 
   // Define removeFromFavorites function in the App component
@@ -77,13 +77,20 @@ const supabase = createClient(supabaseUrl, supabaseKey);
       <Navbar onNavigate={handleNavigation} />
       <br />
       <div className="content">
-        {currentPage === 'home' && (
-          <Home onPodcastClick={setSelectedPodcast} selectedPodcast={selectedPodcast} />
+        {currentPage === "home" && (
+          <Home
+            onPodcastClick={setSelectedPodcast}
+            selectedPodcast={selectedPodcast}
+          />
         )}
-        {currentPage === 'favorite' && (
-          <Favorite favorites={favorites} setFavorites={setFavorites} removeFromFavorites={removeFromFavorites} />
+        {currentPage === "favorite" && (
+          <Favorite
+            favorites={favorites}
+            setFavorites={setFavorites}
+            removeFromFavorites={removeFromFavorites}
+          />
         )}
-        {currentPage === 'preview' && (
+        {currentPage === "preview" && (
           <Preview
             podcastId={selectedPodcast?.id}
             onFavoriteClick={handleFavoriteClick}
@@ -91,7 +98,7 @@ const supabase = createClient(supabaseUrl, supabaseKey);
             onEpisodeProgress={handleEpisodeProgress}
           />
         )}
-        {currentPage === 'history' && <History />}
+        {currentPage === "history" && <History />}
       </div>
     </div>
   );
