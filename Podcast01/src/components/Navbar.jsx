@@ -1,6 +1,12 @@
 import React from "react";
 import {AppBar , Toolbar , Button, Typography } from '@mui/material'
+import {makeStyles} from '@emotion/styled'
 import '../layouts/Navbar.css'
+
+
+const useStyles = makeStyles((theme) => ({
+    // No need for styles here since we're using the external CSS
+  }));
 
   
 function Navbar() {
