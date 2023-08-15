@@ -1,8 +1,14 @@
 .root {
-    flexGrow: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .buttons {
+    display: flex;
+    align-items: center;
   }
   
   .title {
-    flexGrow: 1;
     text-align: right;
   }

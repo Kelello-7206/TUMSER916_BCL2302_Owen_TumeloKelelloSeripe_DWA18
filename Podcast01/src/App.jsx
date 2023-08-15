@@ -1,12 +1,11 @@
 import React from "react"
-import Navbar1 from "./pages/Navbar1"
+import Navbar from "./components/Navbar"
 
 function App() {
-  return (
+  return(
     <>
-    <Navbar1 />
-      
-    </>
+  <Navbar />
+  </>
   )
 }
 
