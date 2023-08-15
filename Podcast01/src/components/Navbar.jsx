@@ -1,8 +1,6 @@
 import React from 'react';
-import { AppBar, Toolbar, Button, Typography, createTheme, ThemeProvider } from '@mui/material';
-import { makeStyles } from '';
-
-const theme = createTheme();
+import { AppBar, Toolbar, Button, Typography } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -11,11 +9,11 @@ const useStyles = makeStyles((theme) => ({
   buttonContainer: {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'flex-start',
+    justifyContent: 'flex-end', // Align buttons to the right
   },
   title: {
     flexGrow: 1,
-    textAlign: 'right',
+    textAlign: 'left', // Align title to the left
   },
 }));
 
@@ -23,22 +21,20 @@ function Navbar() {
   const classes = useStyles();
 
   return (
-    <ThemeProvider theme={theme}>
-      <div className={classes.root}>
-        <AppBar position="static">
-          <Toolbar>
-            <div className={classes.buttonContainer}>
-              <Button color="inherit">Home</Button>
-              <Button color="inherit">Favorite</Button>
-              <Button color="inherit">History</Button>
-            </div>
-            <Typography variant="h6" className={classes.title}>
-              Navbar Title
-            </Typography>
-          </Toolbar>
-        </AppBar>
-      </div>
-    </ThemeProvider>
+    <div className={classes.root}>
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="h6" className={classes.title}>
+            Navbar Title
+          </Typography>
+          <div className={classes.buttonContainer}>
+            <Button color="inherit">Home</Button>
+            <Button color="inherit">Favorite</Button>
+            <Button color="inherit">History</Button>
+          </div>
+        </Toolbar>
+      </AppBar>
+    </div>
   );
 }
 
