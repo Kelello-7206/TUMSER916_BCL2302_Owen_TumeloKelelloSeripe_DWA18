@@ -15,6 +15,15 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     textAlign: 'left', // Align title to the left
   },
+  // Add border to the buttons
+  borderedButton: {
+    border: '1px solid #333', // Customize the border properties
+    margin: '0 8px', // Add some spacing between buttons
+  },
+  // Change navbar color
+  appBar: {
+    backgroundColor: '#2196f3', // Change to your desired color
+  },
 }));
 
 function Navbar() {
@@ -22,15 +31,22 @@ function Navbar() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" className={classes.appBar}>
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
             Navbar Title
           </Typography>
           <div className={classes.buttonContainer}>
-            <Button color="inherit">Home</Button>
-            <Button color="inherit">Favorite</Button>
-            <Button color="inherit">History</Button>
+            {/* Apply the borderedButton class to each button */}
+            <Button className={classes.borderedButton} color="inherit">
+              Home
+            </Button>
+            <Button className={classes.borderedButton} color="inherit">
+              Favorite
+            </Button>
+            <Button className={classes.borderedButton} color="inherit">
+              History
+            </Button>
           </div>
         </Toolbar>
       </AppBar>
