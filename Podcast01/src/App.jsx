@@ -1,12 +1,17 @@
 import React from 'react';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Navbar from './components/Navbar';
+
+const theme = createTheme();
 
 function App() {
   return (
-    <div>
-      <Navbar />
-    
-    </div>
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        {/* Your other components */}
+        <Navbar />
+      </div>
+    </ThemeProvider>
   );
 }
 
