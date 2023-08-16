@@ -5,6 +5,9 @@ import { makeStyles } from '@mui/styles';
 const useStyles = makeStyles((theme) => ({
   navbar: {
     backgroundColor: 'black',
+    top: 0,
+    width: '100%',
+    zIndex: 1000, // Set a higher z-index value if needed
   },
   navTitle: {
     flexGrow: 1,
@@ -12,8 +15,8 @@ const useStyles = makeStyles((theme) => ({
   buttonGroup: {
     display: 'flex',
     alignItems: 'center',
-    color: 'white',
     '& > button': {
+      color: 'white',
       backgroundColor: 'green',
       border: '1px solid blue',
       marginLeft: theme.spacing(2),
