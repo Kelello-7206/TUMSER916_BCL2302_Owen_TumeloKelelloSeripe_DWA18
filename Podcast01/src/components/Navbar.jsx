@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme) => ({
   navbar: {
     backgroundColor: 'black',
     top: 0,
-    width: '100%',
+    maxWidth: '100%',
     zIndex: 1000, // Set a higher z-index value if needed
   },
   navTitle: {
