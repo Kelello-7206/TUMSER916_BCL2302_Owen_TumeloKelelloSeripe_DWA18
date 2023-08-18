@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Card, CardContent, CardMedia, Typography, Container, Grid } from '@mui/material';
+import Navbar from './Navbar';
 
 const Home = () => {
   const [shows, setShows] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true); // Declare the loading state
 
   useEffect(() => {
     const fetchShows = async () => {
@@ -21,8 +22,14 @@ const Home = () => {
     fetchShows();
   }, []);
 
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
   return (
     <>
+      <Navbar />
+      <br/>
       <Container>
         <Grid container spacing={2}>
           {shows.map((show) => (

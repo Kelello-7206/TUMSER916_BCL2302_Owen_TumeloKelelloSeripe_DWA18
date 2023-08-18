@@ -3,15 +3,22 @@ import { AppBar, Toolbar, Button, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles((theme) => ({
+
   navbar: {
-    backgroundColor: 'black',
+    zIndex: 1000,
+    position: 'sticky',
     top: 0,
-    maxWidth: '100%',
-    zIndex: 1000, // Set a higher z-index value if needed
   },
+
+  toolbar: {
+    backgroundColor: 'black',
+
+  },
+
   navTitle: {
     flexGrow: 1,
   },
+
   buttonGroup: {
     display: 'flex',
     alignItems: 'center',
@@ -28,8 +35,9 @@ const Navbar = () => {
   const classes = useStyles();
 
   return (
+    <div className={classes.navbar}>
     <AppBar position="static">
-      <Toolbar className={classes.navbar}>
+      <Toolbar className={classes.toolbar}>
         <Typography variant="h5" className={classes.navTitle}>
           Your Logo
         </Typography>
@@ -40,6 +48,7 @@ const Navbar = () => {
         </div>
       </Toolbar>
     </AppBar>
+    </div>
   );
 };
 
