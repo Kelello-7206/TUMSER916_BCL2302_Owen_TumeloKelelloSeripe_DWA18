@@ -11,8 +11,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   toolbar: {
-    backgroundColor: 'black',
-
+    backgroundColor: 'black',    
   },
 
   navTitle: {
