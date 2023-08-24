@@ -15,17 +15,16 @@ const useStyles = makeStyles((theme) => ({
   },
 
   navTitle: {
-    flexGrow: 1,
+    flexGrow: 0.9,
+    paddingLeft: theme.spacing(10),
   },
 
   buttonGroup: {
-    display: 'flex',
-    alignItems: 'center',
     '& > button': {
       color: 'white',
       backgroundColor: 'green',
       border: '1px solid blue',
-      marginLeft: theme.spacing(2),
+      marginLeft: theme.spacing(1),
     },
   },
 }));

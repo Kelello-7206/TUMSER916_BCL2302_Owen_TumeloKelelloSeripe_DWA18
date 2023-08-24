@@ -30,7 +30,7 @@ const Home = () => {
     <>
       <Navbar />
       <br/>
-      <Container>
+      <Container sx={{ padding: 0 }}>
         <Grid container spacing={6}>
           {shows.map((show) => (
             <Grid item xs={12} sm={6} md={4} lg={3} >
