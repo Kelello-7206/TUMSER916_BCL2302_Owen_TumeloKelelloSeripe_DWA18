@@ -22,13 +22,6 @@ const Home = () => {
     fetchShows();
   }, []);
 
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    const hours = date.getHours().toString().padStart(2, '0');
-    const minutes = date.getMinutes().toString().padStart(2, '0');
-    return `${hours}:${minutes}`;
-  };
-  
   const genreData = {
     1: 'Personal Growth',
     2: 'True Crime and Investigative Journalism',
@@ -48,7 +41,14 @@ const Home = () => {
       return genreData[genreIds];
     }
   };
-
+  
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    return `${hours}:${minutes}`;
+  };
+  
   return (
     <>
       <Navbar />
@@ -63,17 +63,17 @@ const Home = () => {
                   <Typography variant="h7" fontWeight="bold">
                     {show.title}
                   </Typography>
-                  <Typography variant="body2" color="textSecondary">
+                  <Typography variant="body2" color="textSecondary" style={{ height: '4em', overflow: 'hidden', textOverflow: 'ellipsis', marginTop: '0.8em'}}>
                     <span style={{ fontWeight: 'bold' }}>Description:</span> {show.description}
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary" style={{ marginTop: '0.5em' }}>
+                    <span style={{ fontWeight: 'bold' }}>Genres:</span> {getGenres(show.genres)}
                   </Typography>
                   <Typography variant="body2" color="textSecondary">
                     <span style={{ fontWeight: 'bold' }}>Seasons:</span> {show.seasons}
                   </Typography>
                   <Typography variant="body2" color="textSecondary">
                     <span style={{ fontWeight: 'bold' }}>Last Updated:</span> {formatDate(show.updated)}
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary">
-                    <span style={{ fontWeight: 'bold' }}>Genres:</span> {getGenres(show.genres)}
                   </Typography>
                 </CardContent>
               </Card>

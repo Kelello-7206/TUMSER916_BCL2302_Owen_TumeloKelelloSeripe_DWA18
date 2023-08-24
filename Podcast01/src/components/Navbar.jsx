@@ -41,6 +41,7 @@ const Navbar = () => {
         </Typography>
         <div className={classes.buttonGroup}>
           <Button>Home</Button>
+          <Button>Preview</Button>
           <Button>Favorite</Button>
           <Button>History</Button>
         </div>
