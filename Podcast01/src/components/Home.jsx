@@ -31,24 +31,26 @@ const Home = () => {
       <Navbar />
       <br/>
       <Container sx={{ padding: 0 }}>
-        <Grid container spacing={6}>
+        <Grid container spacing={3} margin={0}>
           {shows.map((show) => (
-            <Grid item xs={12} sm={6} md={4} lg={3} >
-              <Card key={show.id}>
+            <Grid item xs={12} sm={6} md={4} lg={3} key={show.id}>
+              <Card>
                 <CardMedia component="img" height="100%" width="100%" image={show.image} alt={show.name} />
                 <CardContent>
-                  <Typography variant="h7">{show.title}</Typography>
-                  <Typography variant="body2" color="textSecondary">
-                    {`Description: ${show.description}`}
+                  <Typography variant="h7" fontWeight="bold">
+                    {show.title}
                   </Typography>
                   <Typography variant="body2" color="textSecondary">
-                    {`Seasons: ${show.seasons}`}
+                  <span style={{ fontWeight: 'bold' }}>Description:</span> {show.description}
                   </Typography>
                   <Typography variant="body2" color="textSecondary">
-                    {`Last Updated: ${new Date(show.lastUpdated).toDateString()}`}
+                  <span style={{ fontWeight: 'bold' }}>Seasons:</span> {show.seasons}
                   </Typography>
                   <Typography variant="body2" color="textSecondary">
-                    {`Genres: ${show.genres.join(', ')}`}
+                  <span style={{ fontWeight: 'bold' }}>Last Updated:</span> {new Date(show.lastUpdated).toDateString()}
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary">
+                    <span style={{ fontWeight: 'bold' }}>Genres:</span> {show.genres.join(', ')}
                   </Typography>
                 </CardContent>
               </Card>
