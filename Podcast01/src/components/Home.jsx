@@ -35,7 +35,7 @@ const Home = () => {
           {shows.map((show) => (
             <Grid item xs={12} sm={6} md={4} lg={3} >
               <Card key={show.id}>
-                <CardMedia component="img" height="140" image={show.image} alt={show.name} />
+                <CardMedia component="img" height="100%" width="100%" image={show.image} alt={show.name} />
                 <CardContent>
                   <Typography variant="h7">{show.title}</Typography>
                   <Typography variant="body2" color="textSecondary">
