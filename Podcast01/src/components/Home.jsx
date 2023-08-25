@@ -57,7 +57,7 @@ const Home = () => {
         <Grid container spacing={3} margin={0}>
           {shows.map((show) => (
             <Grid item xs={12} sm={6} md={4} lg={3} key={show.id}>
-              <Card>
+              <Card sx={{ backgroundColor: '#333', color: '#fff', borderRadius: '10px', boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)' }}>
                 <CardMedia component="img" height="100%" width="100%" image={show.image} alt={show.name} />
                 <CardContent>
                   <Typography variant="h7" fontWeight="bold">
