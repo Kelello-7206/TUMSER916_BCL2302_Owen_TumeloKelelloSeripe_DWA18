@@ -53,7 +53,7 @@ const Home = () => {
     <>
       <Navbar />
       <br/>
-      <Container sx={{ padding: 0 }}>
+      <Container sx={{ padding: 0, backgroundColor: '#222', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <Grid container spacing={3} margin={0}>
           {shows.map((show) => (
             <Grid item xs={12} sm={6} md={4} lg={3} key={show.id}>
