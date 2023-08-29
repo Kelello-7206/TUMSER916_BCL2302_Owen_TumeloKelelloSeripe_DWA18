@@ -6,6 +6,7 @@ import Navbar from './Navbar';
 const Home = () => {
   const [shows, setShows] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedItem, setSelectedItem] = useState(null);
 
   useEffect(() => {
     const fetchShows = async () => {
@@ -48,6 +49,10 @@ const Home = () => {
     const minutes = date.getMinutes().toString().padStart(2, '0');
     return `${hours}:${minutes}`;
   };
+
+  const handleItemClick = (item) => {
+    setSelectedItem(item);
+  };
   
   return (
     <>
@@ -81,6 +86,7 @@ const Home = () => {
           ))}
         </Grid>
       </Container>
+      <Preview selectedItem={selectedItem} /> 
     </>
   );
 };
